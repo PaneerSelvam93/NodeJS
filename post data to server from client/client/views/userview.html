@@ -1,0 +1,25 @@
+<div class="container">
+  	
+  	<b>USER DETAILS</b><br>
+
+	<div class="well">
+	
+		<table border="0px" class="table table-hover">
+		<tr>
+			<th>NAME</th>
+			<th>ID</th>
+			<th>MOBILE</th>
+			<th>ADDRESS</th>
+		</tr>
+		<tr ng-repeat="us in valuereturn">
+		<td>{{us.name}}</td>
+		<td>{{us.id}}</td>
+		<td>{{us.mobile}}</td>
+		<td>{{us.address}}</td>
+		<td><input type="button" value="Edit" class="btn btn-primary"/>
+		<input type="button" value="Delete" class="btn btn-danger"/></td>
+		</tr>
+
+	</table>
+	</div>
+</div>
