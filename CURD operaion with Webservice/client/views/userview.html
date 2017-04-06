@@ -1,0 +1,30 @@
+<div class="container">
+  	<div class="well">
+  		<div class="well well-lg"><center><b>USER DETAILS</b></center><br></div>
+
+	
+	
+		<table border="0px" class="table table-hover">
+		<tr>
+			<th>NAME</th>
+			<th>ID</th>
+			<th>MOBILE</th>
+			<th>ADDRESS</th>
+			<th>EDIT / DELETE</th>
+		</tr>
+		
+		<tr ng-repeat="us in valuereturn  track by $index">
+		<td>{{us.name}}</td>
+		<td>{{us.id}}</td>
+		<td>{{us.mobile}}</td>
+		<td>{{us.address}}</td>
+		<td><input type="button" value="Edit" class="btn btn-primary" ng-click="editrecord($index)"/>&nbsp; 
+		<input type="button" value="Delete" class="btn btn-danger" ng-click="deleterecord($index)"/></td>
+
+		</tr>
+		
+
+	</table>
+	<a href="#/next" class="btn btn-warning">ADD MORE</a><br></td>
+	</div>
+</div>
