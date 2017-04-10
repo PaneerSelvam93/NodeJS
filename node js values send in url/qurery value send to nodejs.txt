@@ -1,0 +1,89 @@
+// Query value send to node js
+
+// angular controller
+var app = angular.module('myapp');
+app.controller('queryvalues', [ "$scope", "$http","$location",function($scope, $http,$location) {
+		 
+	 		
+
+$scope.queryvalue=function(){
+	
+    $http({
+        url: 'http://localhost:3000/queryvalues/? name=abc & id= 5',
+        method:'GET',
+        data : angular.toJson($scope.user),
+        dataType: 'application/json'
+        }).success(function(res) {
+			
+			if (res!= null) {
+				
+			}
+		}).error(function(res) {
+			console.log(JSON.stringify("response fails", res));
+		});
+
+		$scope.user="";
+}
+
+	
+}
+
+
+
+ ]);
+
+
+// node js main.js 
+
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var connection = require('express-myconnection');
+app.use(bodyParser.json());
+app.use(bodyParser.json({
+	type : 'application/vnd.api+json'
+}));
+app.use(bodyParser.urlencoded({
+	extended : true
+}));
+var controller = require('./server/js/Subscription_Status_Server.js');
+
+
+var http = require("http");
+
+app.use(express.static('client'));
+app.use(express.static('supportFile'));
+
+app.get('/', function(req, res) {
+	
+	res.sendfile(__dirname + '/index.html');
+});
+
+app.get('/pathvalues/:id/:name', controller.pathvalues);
+
+app.get('/queryvalues', controller.queryvalues);
+
+
+app.listen(3000, function(req, res) {
+	console.log("Now U Can Access me on http://localhost:3000/ url");
+});
+
+// module of node js controller
+
+
+
+module.exports.pathvalues=function(req,res){
+
+	
+	console.log(req.params.name);
+	console.log(req.params.id);
+
+}
+
+
+module.exports.queryvalues=function(req,res){
+	
+	console.log('ID :',req.query.id);
+	console.log('color :',req.query.color);
+	console.log('age :',req.query.age);
+}
