@@ -10,5 +10,11 @@ app.config([ '$routeProvider', function($routeProvider) {
 
 		templateUrl : 'register.html',
 		controller : 'register_controller'
+
+	}).when('/list_view',{
+
+		templateUrl : 'list_view.html',
+		controller : 'list_view_controller'
+
 	});
 } ]);

@@ -1,0 +1,30 @@
+<div class="container">
+  	<div class="well">
+  		<div class="well well-lg"><center><b>USER DETAILS</b></center><br></div>
+
+	
+	
+		<table border="0px" class="table table-hover">
+		<tr>
+			<th>NAME</th>
+			<th>ID</th>
+			<th>MOBILE</th>
+			<th>ADDRESS</th>
+			<th>EDIT / DELETE</th>
+		</tr>
+		
+		<tr ng-repeat="vr in valuereturn  track by $index">
+		<td>{{vr.u_name}}</td>
+		<td>{{vr.u_id}}</td>
+		<td>{{vr.u_mobile}}</td>
+		<td>{{vr.u_address}}</td>
+		<td><input type="button" value="Edit" class="btn btn-primary" ng-click="edit_user(vr.u_id)"/>&nbsp; 
+		<input type="button" value="Delete" class="btn btn-danger" ng-click="delete_user(vr.u_id)"/></td>
+
+		</tr>
+		
+
+	</table>
+	<a href="#/register" class="btn btn-warning">ADD MORE</a><br></td>
+	</div>
+</div>
