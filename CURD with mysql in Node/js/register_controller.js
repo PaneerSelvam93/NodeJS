@@ -1,20 +1,42 @@
 
-app.controller('register_controller',["$scope","$http","user_service",function($scope,$http,user_service) {
+app.controller('register_controller',["$scope","$http","user_service","$route","$location",function($scope,$http,user_service,$route,$location) {
 	
+
+
+	$scope.ngupdate=null;
+
 	if(user_service.service_var!=null){
-		
+		$scope.ngupdate='in';
+
 		$http({
-			url : 'http://localhost:5000/deleterecord/?num='+ind,
-			method : 'DELETE',
+			url : 'http://localhost:5000/one_user_list/?num='+user_service.service_var,
+			method : 'POST',
 			headers : {
 				"content-type" : "application/json",
 				"Accept" : "application/json"
 			},
 			
 		}).success(function(res) {
+			//console.log('thia is res',res);
+			
+			
+			
+			$scope.user={
+				'name':res.u_name,
+				'id':res.u_id,
+				'mobile':res.u_mobile,
+				'address':res.u_address,
+				}
+				
+			
+			//console.log('thia is user',$scope.user);
+			user_service.update_id=res.id;
+
+			//console.log(user_service.update_id);
 			
 			if (res!= null) {
-				$route.reload();
+				//$route.reload();
+
 			}
 		}).error(function(res) {
 			
@@ -48,23 +70,27 @@ app.controller('register_controller',["$scope","$http","user_service",function($
 		}
 	}
 	$scope.update_details=function(){
-		
+		console.log($scope.user);
+
 		$http({
-			url : 'http://localhost:5000/update/?num='+user_service.service_var,
-			method : 'POST',
+			
+			url : 'http://localhost:5000/update_record/?num='+user_service.update_id,
+			method : 'PUT',
+			data :$scope.user,
 			headers : {
 				"content-type" : "application/json",
 				"Accept" : "application/json"
-			}
+			},
+			
 		}).success(function(res) {
 			
-			
-			if (res!= null) {
 				
-						
+			if (res!= null) {
+				user_service.service_var=null;
+				$location.path('/list_view');
 			}
 		}).error(function(res) {
-			console.log("response fails", res);
+			
 
 		});
 	}

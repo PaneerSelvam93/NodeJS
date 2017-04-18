@@ -24,7 +24,7 @@ app.controller('list_view_controller',["$http","$scope","$route","user_service",
 	});
 
 	$scope.edit_user=function(ind){
-	
+		
 		user_service.service_var=ind;
 		$location.path('/register');
 		

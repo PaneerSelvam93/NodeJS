@@ -1,14 +1,15 @@
 <div class="container">
   
   <div class="well">
-  	<center> USER REGISTER PAGE </center><br><br>
+  	<center><b><h4> USER REGISTER PAGE </h4></b> </center><br><br>
 	<input type ="text" placeholder="Name" ng-model="user.name" class="form-control"/><br>
 	<input type ="text" placeholder="ID" ng-model="user.id" class="form-control"/><br>
 	<input type ="text" placeholder="Mobile Number" ng-model="user.mobile" class="form-control"/><br>
 	<input type ="text" placeholder="Address" ng-model="user.address" class="form-control"/><br>
-	<input type="button" value="save" ng-click="save_details()" class="btn btn-primary"/>
-	<input type="button" value="update" ng-click="update_details()" class="btn btn-primary"/>&nbsp;&nbsp;
+	<input type="button" ng-hide="ngupdate" value="save" ng-click="save_details()" class="btn btn-primary"/>
+	<input type="button" ng-show="ngupdate" value="update" ng-click="update_details()" class="btn btn-primary"/>&nbsp;&nbsp;
 	<input type="button" value="clear" ng-click="clear()" class="btn btn-warning"/>&nbsp;&nbsp;&nbsp;&nbsp;
 	<a href="#/list_view" class="btn btn-info">View users</a><br>
+
   </div>
 </div>

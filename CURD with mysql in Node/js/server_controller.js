@@ -66,13 +66,12 @@ module.exports.deleterecord=function(req,res){
     });
 }
 module.exports.one_user_list=function(req,res){
-
-    users.findAll({where:{u_id:req.query.num}}).then(function (data,err) {
+console.log(req.query.num);
+    users.find({where:{u_id:req.query.num}}).then(function (data,err) {
     
         if(data){
             
             res.send(data);
-            
         }
         else{
             console.log(' error:',JSON.stringify(err));
@@ -81,25 +80,25 @@ module.exports.one_user_list=function(req,res){
     
 }
 
-module.exports.update=function(req,res){
+module.exports.update_record=function(req,res){
 
-    var temp= req.query.num;
+
    
-    Item.find({where:{name:'Laptop'}}).complete(function (err, data) {
+    users.find({where:{id :req.query.num}}).then(function (data, err) {
 
-    
-        if(data){
-            data.updateAttributes({
-            u_name:'Computer',
-            u_id:'Computer',
-            u_mobile:'Computer',
-            u_address:'Computer'
-        }).success(function (data1) {
-            console.log(data1);
+
+    if(data){
+        data.updateAttributes({
+            u_name : req.body.name,
+            u_id : req.body.id,
+            u_mobile : req.body.mobile,
+            u_address : req.body.address
+        }).then(function () {
+            res.send('okay');
         })
-        if(err){
-
-        }
+    }
+    if(err){
+        console.log('Error found :',err);
     }
 });
     

@@ -22,7 +22,7 @@ app.post('/register', controller.register);
 app.get('/userlist',controller.user_view);
 app.delete('/deleterecord', controller.deleterecord);
 app.post('/one_user_list',controller.one_user_list);
-app.post('/update',controller.update);
+app.put('/update_record',controller.update_record);
 
 
 // initializing a port app.listen();
